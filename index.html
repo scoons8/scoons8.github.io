@@ -1,14 +1,18 @@
-<html>
+<!DOCTYPE html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@5"></script>
 </head>
+
 <body>
+<div id="vis"></div>
 
+<script>
+    const spec = "vegaEx01.json";
+    vegaEmbed("#vis", spec)
+        // result.view provides access to the Vega View API
+        .then(result => console.log(result))
+        .catch(console.warn);
+</script>
 </body>
-</html>
-
-<a href="/vegaEx01.html"><</a>
