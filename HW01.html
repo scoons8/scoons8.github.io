@@ -6,13 +6,15 @@
 </head>
 
 <body>
+<p>Homework 1 : line plot</p>
 <div id="vis"></div>
 
 <script>
-    const spec = "vegaEx01.json";
+    const spec = "hw01test02.json";
     vegaEmbed("#vis", spec)
         // result.view provides access to the Vega View API
         .then(result => console.log(result))
         .catch(console.warn);
+
 </script>
 </body>
