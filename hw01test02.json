@@ -1,0 +1,90 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A specification outline example.",
+  "width": 700,
+  "height": 500,
+  "padding": 5,
+  "autosize": "pad",
+  "signals": [],
+  "data": [
+    {
+      "name": "ibisDat",
+      "url": "Data/klamathIbisTest03.csv",
+      "format": {"type": "csv", "parse": {"wetHa": "number", "Year": "number"}}
+    }
+  ],
+  "scales": [
+    {
+      "name": "Time",
+      "type": "point",
+      "domain": {"data": "ibisDat", "field": "Year"},
+      "range": "width"
+    },
+    {
+      "name": "Water",
+      "type": "linear",
+      "domain": {"data": "ibisDat", "field": "wetHa"},
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "Color",
+      "type": "ordinal",
+      "domain": {"data": "ibisDat", "field": "Symbol"},
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "Time",
+      "orient": "bottom",
+      "title": "Year"
+    },
+    {
+      "scale": "Water",
+      "orient": "left",
+      "title": "Surface Water (ha)"
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "ibisDat",
+          "groupby": "Symbol"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {"data": "series"},
+          "encode": {
+            "enter": {
+              "x": {"scale": "Time", "field": "Year"},
+              "y": {"scale": "Water", "field": "wetHa"},
+              "stroke": {"scale": "Color", "field": "Symbol"},
+              "strokeWidth": {"value": 2}
+            }
+          }
+        },
+        {
+          "type": "symbol",
+          "from": {"data": "series"},
+          "encode": {
+            "enter": {
+              "x": {"scale": "Time", "field": "Year"},
+              "y": {"scale": "Water", "field": "wetHa"},
+              "fill": {"scale": "Color", "field": "Symbol"},
+              "stroke": {"scale": "Color", "field": "Symbol"},
+              "strokewidth": {"value": 0.5},
+              "size": {"value": 20}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
